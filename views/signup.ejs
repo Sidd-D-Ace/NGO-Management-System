@@ -1,0 +1,118 @@
+<%- include("partials/header.ejs") %>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="login-card">
+                <!-- Login Form -->
+                <form id="loginForm" class="login-form" method="POST" action="/adduser">
+                    <!-- Username Field -->
+                    <div class="form-group">
+                        <label class="form-label">EMAIL</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required
+                        />
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label class="form-label">PASSWORD</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select your identity</label>
+                        <select name="role" id="role" class="form-input" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <!-- <option value="volunteer">Volunteer</option>
+                            <option value="branch">Branch Head</option> -->
+                            <option value="head">Head</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input
+                            type="Text"
+                            name="name"
+                            id="name"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Select your Gender</label>
+                        <select name="gender" id="gender" class="form-input" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <!-- <option value="volunteer">Volunteer</option>
+                            <option value="branch">Branch Head</option> -->
+                            <option value="head">Male</option>
+                            <option value="head">Female</option>
+                            <option value="head">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Aadhar Number</label>
+                        <input
+                            type="number"
+                            name="aadhar"
+                            id="aadahr"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required 
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Education</label>
+                        <select name="education" id="education" class="form-input" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <!-- <option value="volunteer">Volunteer</option>
+                            <option value="branch">Branch Head</option> -->
+                            <option value="head">12th pass</option>
+                            <option value="head">Undergraduate</option>
+                            <option value="head">Postgraduate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Age</label>
+                        <input
+                            type="number"
+                            name="age"
+                            id="age"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required 
+                        />
+
+                    <!-- Signin Button -->
+                    <div class="button-container">
+                        <button type="submit" class="login-button">SIGN IN</button>
+                    </div>
+                </form>
+
+                <!-- OR Text -->
+                <div class="or-text" style="text-align: center; margin: 10px 0;">OR</div>
+
+                <!-- login Form -->
+                <form method="GET" action="/">
+                    <div class="button-container">
+                        <button type="submit" class="signup-button">LOGIN</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

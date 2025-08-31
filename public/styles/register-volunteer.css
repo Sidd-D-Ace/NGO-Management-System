@@ -1,0 +1,163 @@
+/* Color tokens: primary/dark, cream, beige, tan, sage */
+:root {
+  --primary: #3b342c;
+  --cream: #f2ece6;
+  --beige: #efe9e3;
+  --tan: #c8b29a;
+  --sage: #c6cebe;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body.page {
+  margin: 0;
+  background: var(--sage);
+  color: var(--primary);
+  font-family: Georgia, "Times New Roman", serif; /* single family to match screenshot */
+}
+
+/* Header */
+.site-header {
+  background: var(--cream);
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Layout container */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+/* Form wrapper and tab */
+.form-wrap {
+  position: relative;
+  padding-top: 18px;
+}
+.tab {
+  background: var(--tan);
+  color: var(--primary);
+  text-align: center;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 16px 16px 0 0;
+  width: min(960px, 100%);
+  margin: 0 auto;
+}
+
+/* Card */
+.card {
+  background: var(--beige);
+  border-radius: 0 0 18px 18px;
+  padding: 28px 24px 20px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) inset;
+}
+
+/* Grid of fields */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 28px;
+}
+.field {
+  text-align: center;
+}
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.field.wide {
+  grid-column: span 4;
+}
+
+/* Pill inputs */
+.pill {
+  width: 100%;
+  height: 34px;
+  border: none;
+  outline: none;
+  background: var(--tan);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.btn {
+  border: none;
+  background: var(--primary);
+  color: var(--cream);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: 2px solid #0000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+    gap: 16px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr; /* single column on mobile */
+    gap: 14px;
+  }
+
+  .field {
+    width: 100%;
+    text-align: left; /* better readability on narrow screens */
+  }
+
+  .tab {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .field label {
+    font-size: 14px;
+  }
+
+  .pill {
+    height: 40px; /* a bit taller for touch */
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 100%; /* button fills screen */
+    padding: 12px;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+}

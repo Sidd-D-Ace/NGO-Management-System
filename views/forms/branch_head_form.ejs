@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Volunteer</title>
+  <link rel="stylesheet" href="/styles/register-volunteer.css">
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+    .actions { margin-top: 20px; }
+    .btn { padding: 8px 16px; margin: 5px; cursor: pointer; }
+  </style>
+</head>
+<body class="page">
+  <header class="site-header">
+    <h1 class="title">UPAY Portal</h1>
+  </header>
+
+  <main class="container">
+    <section class="form-wrap">
+      <div class="tab">Register Volunteer</div>
+
+      <form id="volunteerForm" class="card" method="post" action="<%= basePath %>/register-branch-head">
+        <!-- Step 1 -->
+        <div id="step1" class="step active">
+          <div class="grid">
+            <input type="hidden" name="role" value="branch head">
+            <div class="field">
+              <label for="fullName">Full Name</label>
+              <input id="name" name="name" type="text" class="pill" required />
+            </div>
+            <div class="field">
+              <label for="age">Age</label>
+              <input id="age" name="age" type="number" class="pill" required />
+            </div>
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" class="pill" required>
+                <option value="">-- Select Gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="address">Address</label>
+              <input id="address" name="address" type="text" class="pill" required />
+            </div>
+            <div class="field">
+              <label for="education">Education</label>
+              <select id="education" name="education" class="pill" required>
+                <option value="">-- Select Education --</option>
+                <option value="12th Pass">12th Pass</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Postgraduate">Postgraduate</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="aadhar">Aadhar Number</label>
+              <input id="aadhar" name="aadhar" type="text" class="pill" required />
+            </div>
+            <div class="field">
+              <label for="schoolCollege">School/College</label>
+              <input id="school" name="school" type="text" class="pill" required />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn" onclick="nextStep()">Save & Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step2" class="step">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" class="pill" required />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" class="pill" required />
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn" onclick="prevStep()">⬅ Back</button>
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script>
+    function nextStep() {
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+    }
+
+    function prevStep() {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+    }
+  </script>
+</body>
+</html>

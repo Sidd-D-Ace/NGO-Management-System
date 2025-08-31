@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Volunteer</title>
+  <link rel="stylesheet" href="/styles/register-volunteer.css">
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+    .actions { margin-top: 20px; }
+    .btn { padding: 8px 16px; margin: 5px; cursor: pointer; }
+  </style>
+</head>
+<body class="page">
+  <header class="site-header">
+    <h1 class="title">UPAY Portal</h1>
+  </header>
+
+  <main class="container">
+    <section class="form-wrap">
+      <div class="tab">Register New Branch</div>
+
+      <form id="volunteerForm" class="card" method="post" action="<%= basePath %>/register-branch">
+        <!-- Step 1 -->
+        <div id="step1" class="step active">
+          <div class="grid">
+            <div class="field">
+              <label for="fullName">Branch Name</label>
+              <input id="name" name="name" type="text" class="pill" required />
+            </div>
+            <div class="field">
+              <label for="age">Address</label>
+              <input id="address" name="address" type="text" class="pill" required />
+            </div>
+           <div class="field">
+  <label for="branchHead">Branch Head</label>
+  <select id="branchHead" name="branchHead" class="pill" required>
+    <option value="">-- Select Branch Head --</option>
+    <% branchHeads.forEach(bh => { %>
+      <option value="<%= bh.admin_id %>"><%= bh.name %></option>
+    <% }) %>
+  </select>
+</div>
+
+<div class="field">
+  <label for="head">Head</label>
+  <select id="head" name="head" class="pill" required>
+    <option value="">-- Select Head --</option>
+    <% heads.forEach(h => { %>
+      <option value="<%= h.head_id %>"><%= h.name %></option>
+    <% }) %>
+  </select>
+</div>
+
+          <div class="actions">
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </div>
+
+      </form>
+    </section>
+  </main>
+</body>
+</html>

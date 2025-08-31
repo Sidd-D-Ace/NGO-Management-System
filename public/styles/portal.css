@@ -1,0 +1,270 @@
+/* Color palette (max 5 colors):
+   1) --ink: #3c332b (primary text)
+   2) --cream: #f2ece6 (site header/background)
+   3) --beige: #efe9e3 (panels)
+   4) --tan: #c8b29a (tiles/chips)
+   5) --sage: #c6cebe (welcome bar)
+*/
+
+:root {
+  --ink: #3c332b;
+  --cream: #f2ece6;
+  --beige: #efe9e3;
+  --tan: #c8b29a;
+  --sage: #c6cebe;
+  --radius-lg: 16px;
+  --radius-sm: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body.page {
+  margin: 0;
+  background: #d1c1af; /* subtle page tint behind panels */
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--ink);
+}
+
+/* Header */
+.site-header {
+  background: var(--cream);
+  padding: 20px 16px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.site-title {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+/* Welcome bar */
+.welcome-bar {
+  background: var(--sage);
+  padding: 10px 16px;
+}
+.welcome-text {
+  margin: 0 auto;
+  max-width: 1100px;
+  text-align: left;
+  letter-spacing: .5em;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Main layout */
+.layout {
+  max-width: 1100px;
+  margin: 16px auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  padding: 0 8px 24px;
+}
+
+/* Panels */
+.panel {
+  background: var(--beige);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.panel-title {
+  margin: 4px 12px 8px;
+  font-size: 18px;
+  text-align: left;
+}
+.panel-title.center {
+  text-align: center;
+}
+
+/* Register panel */
+.register {
+  align-self: start;
+}
+.register-list {
+  list-style: none;
+  margin: 8px;
+  padding: 12px;
+  background: #f6f1ec;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.register-list li {
+  padding: 10px 8px;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.register-button {
+  display: block;
+  text-decoration: none;
+  background-color: var(--tan);
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: 22px;
+  text-align: center;
+  font-weight: 600;
+  margin: 8px 0;
+  transition: all 0.2s ease;
+}
+
+.register-button:hover {
+  background-color: var(--sage);
+  color: var(--ink);
+}
+
+.chip-button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: var(--tan);
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: 22px;
+  font-size: 14px;
+  margin: 4px;
+  transition: all 0.2s ease;
+}
+
+.chip-button:hover {
+  background-color: var(--sage);
+  color: var(--ink);
+}
+
+
+/* Right column sections */
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Dashboard stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 8px 12px 16px;
+}
+.stat-tile {
+  background: var(--tan);
+  color: var(--ink);
+  height: 92px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* Manage chips */
+.manage .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px;
+}
+.chip {
+  background: var(--tan);
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: 22px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .welcome-text {
+    letter-spacing: .35em;
+  }
+}
+
+/* Tablets & small laptops */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .welcome-text {
+    letter-spacing: .35em;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 600px) {
+  body.page {
+    font-size: 14px;
+  }
+
+  .site-header {
+    padding: 12px;
+  }
+  .site-title {
+    font-size: 20px;
+  }
+
+  .welcome-text {
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-align: center;
+  }
+
+  .layout {
+    gap: 12px;
+    padding: 0 4px 16px;
+  }
+
+  .register-button,
+  .chip-button {
+    width: 100%;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr; /* stack tiles vertically */
+    gap: 12px;
+  }
+
+  .stat-tile {
+    height: 72px;
+    font-size: 13px;
+  }
+}
+
+/* Extra small phones (iPhone SE, <480px) */
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 18px;
+  }
+  .panel-title {
+    font-size: 16px;
+  }
+  .register-list {
+    padding: 8px;
+  }
+  .register-button,
+  .chip-button {
+    font-size: 12px;
+    padding: 8px;
+  }
+}

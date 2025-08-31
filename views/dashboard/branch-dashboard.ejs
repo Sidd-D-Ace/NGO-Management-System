@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UPAY Portal</title>
+    <link rel="stylesheet" href="/styles/portal.css" />
+  </head>
+  <body class="page">
+    <header class="site-header">
+      <h1 class="site-title">UPAY Portal</h1>
+    </header>
+
+    <section class="welcome-bar">
+      <p class="welcome-text">W E L C O M E &nbsp; ‹ <span><%= typeof name !== 'undefined' ? name : 'NAME' %></span> › !</p>
+    </section>
+
+    <main class="layout">
+      <aside class="panel register">
+  <h2 class="panel-title">Register</h2>
+  <ul class="register-list">
+    <li><a href="/branch/volunteer_form" class="register-button">Volunteer</a></li>
+    <li><a href="/branch/student_form" class="register-button">Student</a></li>
+  </ul>
+</aside>
+
+      <section class="right-col">
+        <section class="panel dashboard">
+          <h2 class="panel-title center">Dashboard</h2>
+          <div class="stats">
+            <div class="stat-tile">
+              <span>Total Centers</span>
+            </div>
+            <div class="stat-tile">
+              <span>Total Beneficiaries</span>
+            </div>
+            <div class="stat-tile">
+              <span>Avg Attendance</span>
+            </div>
+            <div class="stat-tile">
+              <span>Avg Performance</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel manage">
+  <h2 class="panel-title center">Manage</h2>
+  <div class="chips">
+    <a href="/Volunteer_list" class="chip-button">Volunteer</a>
+    <a href="/Student_list" class="chip-button">Student</a>
+    <a href="/create_class" class="chip-button">Class</a>
+    <a href="/create_test" class="chip-button">Test</a>
+  </div>
+</section>
+      </section>
+    </main>
+  </body>
+</html>

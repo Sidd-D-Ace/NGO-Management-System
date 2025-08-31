@@ -1,0 +1,55 @@
+<%- include("partials/header.ejs") %>
+<body>
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="login-card">
+                <!-- Login Form -->
+                <form id="loginForm" class="login-form" method="POST" action="/login">
+                    <!-- Username Field -->
+                    <div class="form-group">
+                        <label class="form-label">USERNAME</label>
+                        <input
+                            type="email"
+                            name="username"
+                            id="username"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required
+                        />
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label class="form-label">PASSWORD</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="TYPE HERE"
+                            class="form-input"
+                            required
+                        />
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="button-container">
+                        <button type="submit" class="login-button">LOGIN</button>
+                    </div>
+                </form>
+
+                <!-- OR Text -->
+                <div class="or-text" style="text-align: center; margin: 10px 0;">OR</div>
+
+                <!-- Signup Form -->
+                <form method="GET" action="/signup">
+                    <div class="button-container">
+                        <button type="submit" class="signup-button">SIGN UP</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

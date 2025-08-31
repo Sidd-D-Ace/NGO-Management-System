@@ -1,0 +1,44 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+*.log.*
+debug.log
+error.log
+out.log
+
+# Build outputs
+dist/
+build/
+.cache/
+.tmp/
+coverage/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+
+# Misc
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: Ignore compiled files
+*.out
+*.exe
+*.class
