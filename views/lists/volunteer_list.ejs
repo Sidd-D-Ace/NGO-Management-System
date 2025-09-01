@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UPAY Portal — List of Volunteers</title>
+    <link rel="stylesheet" href="/styles/students.css" />
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <h1 class="title">UPAY Portal</h1>
+    </header>
+
+    <main class="page" role="main" aria-labelledby="volunteersHeading">
+      <section class="card">
+        <div class="card-bar">
+          <a href="<%= basePath %>/dashboard" class="icon-btn" aria-label="Go back">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <h2 id="volunteersHeading" class="card-title">List Of Volunteers</h2>
+
+          <a href="<%= basePath %>/volunteer_form" class="add-btn" aria-label="Add Volunteer">
+            <svg viewBox="0 0 24 24" class="plus" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Add Volunteer</span>
+          </a>
+        </div>
+
+        <div class="panel">
+          <!-- Filter Tabs -->
+          <nav class="tabs" aria-label="Volunteer filters">
+            <button class="tab filter-btn active" data-status="all">All</button>
+            <button class="tab filter-btn" data-status="Active">Active</button>
+            <button class="tab filter-btn" data-status="Inactive">Inactive</button>
+            <button class="tab filter-btn" data-status="Recent">Recent</button>
+          </nav>
+
+          <!-- Search -->
+          <div class="search-row">
+            <label for="volunteerSearch" class="sr-only">Search a Volunteer</label>
+            <div class="search-input">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input id="volunteerSearch" type="search" placeholder="Search a Volunteer" />
+            </div>
+          </div>
+
+          <!-- Volunteers Table -->
+          <div class="table-wrap" role="region" aria-label="Volunteers table">
+            <table class="students">
+              <thead>
+                <tr>
+                  <th scope="col">Sr no.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Branch</th>
+                  <th scope="col">Attendance</th>
+                  <th scope="col" class="ta-right">Evaluation</th>
+                </tr>
+              </thead>
+              <tbody id="volunteersTableBody">
+                <!-- Rows rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/volunteers.js"></script>
+  </body>
+</html>

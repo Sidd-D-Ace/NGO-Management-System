@@ -86,4 +86,198 @@ router.get('/branch_form',ensureAuthenticated, checkRole('head'),async (req,res)
 });
 
 
-module.exports=router;
+// --- Student list (page + API with filters) ---
+
+// Render page (EJS shell only)
+router.get("/student_list", ensureAuthenticated, checkRole("head"), async (req, res) => {
+  try {
+    res.render("lists/students_list", { query: req.query ,basePath: '/head' });
+  } catch (err) {
+    console.error("Error rendering student_list:", err);
+    res.status(500).send("Error rendering student list");
+  }
+});
+
+// Fetch students with status filter
+router.get("/api/students", async (req, res) => {
+  try {
+    const { status } = req.query;
+    let query = `
+      SELECT 
+        s.student_id, 
+        s.name, 
+        s.age, 
+        s.gender, 
+        s.status, 
+        b.branch_name AS branch,
+        COALESCE(a.attendance, '0%') AS attendance,
+        s.enrollment_date
+      FROM students s
+      LEFT JOIN branches b ON s.branch_id = b.branch_id
+      LEFT JOIN (
+        SELECT 
+          student_id,
+          CONCAT(
+            ROUND(
+              (COUNT(*) FILTER (WHERE status = 'Present')::numeric / NULLIF(COUNT(*),0)) * 100,
+              0
+            ), '%'
+          ) AS attendance
+        FROM student_attendance
+        GROUP BY student_id
+      ) a ON s.student_id = a.student_id
+    `;
+
+    if (status === "Active" || status === "Inactive") {
+      query += ` WHERE s.status = $1 ORDER BY s.student_id`;
+      const result = await db.query(query, [status]);
+      return res.json(result.rows);
+    }
+
+    if (status === "Recent") {
+      query += ` ORDER BY s.enrollment_date DESC`;
+      const result = await db.query(query);
+      return res.json(result.rows);
+    }
+
+    // For "All" or no filter
+    query += ` ORDER BY s.student_id`;
+    const result = await db.query(query);
+    res.json(result.rows);
+
+  } catch (err) {
+    console.error("Error fetching students:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+router.get("/volunteer_list", ensureAuthenticated, checkRole("head"), async (req, res) => {
+  try {
+    res.render("lists/volunteer_list", { query: req.query ,basePath: '/head' });
+  } catch (err) {
+    console.error("Error rendering volunteer_list:", err);
+    res.status(500).send("Error rendering volnteer list");
+  }
+});
+
+router.get("/api/volunteers", async (req, res) => {
+  try {
+    const { status } = req.query;
+    let query = `
+      SELECT 
+        v.volunteer_id, 
+        v.name, 
+        v.age, 
+        v.gender, 
+        v.status, 
+        b.branch_name AS branch,
+        COALESCE(a.attendance, '0%') AS attendance,
+        v.join_date
+      FROM volunteers v
+      LEFT JOIN branches b ON v.branch_id = b.branch_id
+      LEFT JOIN (
+        SELECT 
+          volunteer_id,
+          CONCAT(
+            ROUND(
+              (COUNT(*) FILTER (WHERE status = 'Present')::numeric / NULLIF(COUNT(*),0)) * 100,
+              0
+            ), '%'
+          ) AS attendance
+        FROM volunteer_attendance
+        GROUP BY volunteer_id
+      ) a ON v.volunteer_id = a.volunteer_id
+    `;
+
+    if (status === "Active" || status === "Inactive") {
+      query += ` WHERE v.status = $1 ORDER BY v.volunteer_id`;
+      const result = await db.query(query, [status]);
+      return res.json(result.rows);
+    }
+
+    if (status === "Recent") {
+      query += ` ORDER BY v.join_date DESC`;
+      const result = await db.query(query);
+      return res.json(result.rows);
+    }
+
+    // All volunteers
+    query += ` ORDER BY v.volunteer_id`;
+    const result = await db.query(query);
+    res.json(result.rows);
+
+  } catch (err) {
+    console.error("Error fetching volunteers:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+router.get("/branch_head_list", ensureAuthenticated, checkRole("head"), async (req, res) => {
+  try {
+    res.render("lists/branch_head_list", { query: req.query });
+  } catch (err) {
+    console.error("Error rendering branch_head_list:", err);
+    res.status(500).send("Error rendering branch head list");
+  }
+});
+
+router.get("/api/branch_heads", async (req, res) => {
+  try {
+    const { status, search } = req.query;
+
+    // Join admins with branches to get branch name
+    let query = `
+      SELECT 
+        a.admin_id, 
+        a.name, 
+        a.age, 
+        a.gender, 
+        a.status,
+        a.join_date,
+        b.branch_name
+      FROM admins a
+      LEFT JOIN branches b ON b.admin_id = a.admin_id
+    `;
+
+    const values = [];
+    const conditions = [];
+
+    // Status filter
+    if (status === "Active" || status === "Inactive") {
+      conditions.push(`a.status = $${values.length + 1}`);
+      values.push(status);
+    }
+
+    // Search filter
+    if (search) {
+      conditions.push(`a.name ILIKE $${values.length + 1}`);
+      values.push(`%${search}%`);
+    }
+
+    if (conditions.length) {
+      query += ` WHERE ${conditions.join(" AND ")}`;
+    }
+
+    // Order by join_date for recent, else by admin_id
+    if (status === "Recent") {
+      query += ` ORDER BY a.join_date DESC`;
+    } else {
+      query += ` ORDER BY a.admin_id`;
+    }
+
+    const result = await db.query(query, values);
+    res.json(result.rows);
+
+  } catch (err) {
+    console.error("Error fetching branch heads:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+
+module.exports = router;

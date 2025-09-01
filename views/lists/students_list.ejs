@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UPAY Portal — List of Students</title>
+    <link rel="stylesheet" href="/styles/students.css" />
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <h1 class="title">UPAY Portal</h1>
+    </header>
+
+    <main class="page" role="main" aria-labelledby="studentsHeading">
+      <section class="card">
+        <div class="card-bar">
+          <a href="<%= basePath %>/dashboard" class="icon-btn" aria-label="Go back">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>
+
+          <h2 id="studentsHeading" class="card-title">List Of Students</h2>
+
+          <a href="<%= basePath %>/student_form" class="add-btn" aria-label="Add Student">
+            <svg viewBox="0 0 24 24" class="plus" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Add Student</span>
+          </a>
+        </div>
+
+        <div class="panel">
+          <!-- Filter Tabs -->
+          <nav class="tabs" aria-label="Student filters">
+            <button class="tab filter-btn active" data-status="all">All</button>
+            <button class="tab filter-btn" data-status="Active">Active</button>
+            <button class="tab filter-btn" data-status="Inactive">Inactive</button>
+            <button class="tab filter-btn" data-status="Recent">Recent</button>
+          </nav>
+
+          <!-- Search -->
+          <div class="search-row">
+            <label for="studentSearch" class="sr-only">Search a Student</label>
+            <div class="search-input">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input id="studentSearch" type="search" placeholder="Search a Student" />
+            </div>
+          </div>
+
+          <!-- Students Table -->
+          <div class="table-wrap" role="region" aria-label="Students table">
+            <table class="students">
+              <thead>
+                <tr>
+                  <th scope="col">Sr no.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Branch</th>
+                  <th scope="col">Attendance</th>
+                  <th scope="col" class="ta-right">Test Evaluation</th>
+                </tr>
+              </thead>
+              <tbody id="studentsTableBody">
+                <!-- Rows will be rendered by students.js -->
+              </tbody>
+            </table>
+            <div id="loadingSpinner" style="text-align:center; padding:10px; display:none;">
+    Loading...
+  </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- External Script -->
+    <script src="/js/students.js"></script>
+  </body>
+</html>

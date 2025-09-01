@@ -13,7 +13,7 @@ router.post('/login', (req, res, next) => {
     }
     if (!user) {
       console.log("Invalid credentials");
-      return res.redirect('/login'); // stay on login if fail
+      return res.redirect('/'); // stay on login if fail
     }
 
     req.logIn(user, (loginErr) => {
