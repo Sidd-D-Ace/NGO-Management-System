@@ -9,7 +9,8 @@ const db = require('../db/postgres');
 //     res.render('login');
 // })
 
-
+const sessionRoutes = require('./sessions');
+router.use('/sessions',sessionRoutes);
 
 router.post("/adduser", registerHead);
 router.post('/register-user', ensureAuthenticated, checkRole('head'), registerUser);

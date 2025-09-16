@@ -5,6 +5,9 @@ const {registerStudent} = require('../controllers/registerController');
 const checkRole=require('../middleware/checkRole');
 const db = require('../db/postgres');
 
+const sessionRoutes = require('./sessions');
+router.use('/sessions',sessionRoutes);
+
 
 router.get('/dashboard',ensureAuthenticated, checkRole('volunteer') ,async (req, res) => {
   try {

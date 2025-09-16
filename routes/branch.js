@@ -6,6 +6,10 @@ const db = require('../db/postgres');
 
 const router = express.Router();
 
+const sessionRoutes = require('./sessions');
+router.use('/sessions',sessionRoutes);
+
+
 // ✅ Branch dashboard
 router.get('/dashboard',ensureAuthenticated, checkRole('branch head') ,async (req, res) => {
   try {
