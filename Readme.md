@@ -1,6 +1,6 @@
-# UPAY Portal
+# NGO Management Portal
 
-UPAY Portal is a comprehensive, role-based management system designed for the UPAY organization. It provides a centralized platform for heads, branch heads, and volunteers to manage branches, personnel, students, and academic sessions efficiently.
+NGO Management Portal is a comprehensive, role-based management system designed for the UPAY organization. It provides a centralized platform for heads, branch heads, and volunteers to manage branches, personnel, students, and academic sessions efficiently.
 
 ## Features
 
